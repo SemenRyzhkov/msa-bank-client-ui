@@ -16,10 +16,17 @@ module.exports = {
     {
       plugin: ModuleFederationPlugin,
       options: {
+        name: 'MsaBankClientUI',
+        filename: 'remoteEntry.js',
+        exposes: {
+          './App': './src/App.tsx',
+        },
         shared: {
           ...allDeps,
-          'styled-components': {
+          react: { singleton: true, requiredVersion: allDeps.react },
+          'react-dom': {
             singleton: true,
+            requiredVersion: allDeps['react-dom'],
           },
         },
       },
